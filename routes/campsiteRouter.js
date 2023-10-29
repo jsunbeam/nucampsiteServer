@@ -1,11 +1,11 @@
 const express = require("express");
 const Campsite = require("../models/campsite");
-
 const campsiteRouter = express.Router();
 
 campsiteRouter
   .route("/")
   .get((req, res, next) => {
+    //finds all documents based on the Campsite model
     Campsite.find()
       .then((campsites) => {
         res.statusCode = 200;
@@ -15,6 +15,7 @@ campsiteRouter
       .catch((err) => next(err));
   })
   .post((req, res, next) => {
+    //creates a new campsite document using the Campsite model
     Campsite.create(req.body)
       .then((campsite) => {
         console.log("Campsite Created ", campsite);
